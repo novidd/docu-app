@@ -10,11 +10,13 @@
   --color-tahiti: #3ab7bf;
   --color-bermuda: #78dcca;
 
-  --color-primary-gray-0: #dadada; /* Active icon */
   --color-primary-gray-1: #a0a0a0; /* Default Icon */
   --color-primary-gray-2: #363636; /* Top bar */
   --color-primary-gray-3: #262626; /* Side bars (toolbar and explorer) */
   --color-primary-gray-4: #1e1e1e; /* Editor background */
+
+  --color-primary-gray-active-icon: #dadada; /* Active icon */
+  --color-primary-gray-button-hover-bg: #434343; /* Button hover bg */
 }
 
 @theme inline {
@@ -37,8 +39,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* CUSTOM CSS */
 .icon-button {
   svg {
-    color: var(--color-primary-gray-1)
+    color: var(--color-primary-gray-1);
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover svg {
+    color: var(--color-primary-gray-active-icon);
+    transition-duration: 100ms;
   }
 }

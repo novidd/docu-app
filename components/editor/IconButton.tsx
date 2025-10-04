@@ -1,22 +1,22 @@
 import { cn } from "@/libs/utils";
 import React from "react";
 
-const IconButton = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  disabled?: boolean;
+}
+
+const IconButton = ({ className, disabled, children, ...props }: IconButtonProps) => {
   return (
-    <div
+    <button
       className={cn(
-        "w-8 pt-0.5 pb-0.75 rounded-sm flex justify-center items-center icon-button",
+        "w-9 py-1 rounded-sm flex justify-center items-center icon-button hover:bg-primary-gray-button-hover-bg transition-colors duration-100",
         className
       )}
+      disabled={disabled}
+      {...props}
     >
       {children}
-    </div>
+    </button>
   );
 };
 
