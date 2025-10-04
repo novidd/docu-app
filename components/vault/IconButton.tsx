@@ -1,11 +1,17 @@
 import { cn } from "@/libs/utils";
-import React from "react";
 
 interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
+  label?: string;
 }
 
-const IconButton = ({ className, disabled, children, ...props }: IconButtonProps) => {
+const IconButton = ({
+  label,
+  disabled,
+  className,
+  children,
+  ...props
+}: IconButtonProps) => {
   return (
     <button
       className={cn(
