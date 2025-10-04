@@ -3,7 +3,7 @@ import ExplorerTopToolbar from "./ExplorerTopToolbar";
 
 const Explorer = () => {
   return (
-    <div className="h-full bg-blue-200">
+    <div className="h-full">
       <ExplorerTopToolbar />
       <ExplorerBottomToolbar />
       {/* FOLDERS, NOTES, CANVAS ETC */}
