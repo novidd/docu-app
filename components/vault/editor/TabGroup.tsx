@@ -4,7 +4,15 @@ import { Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import IconButton from "../IconButton";
 
-const TabsContainer = ({ children }: { children: React.ReactNode }) => {
+const TabGroup = ({ children }: { children: React.ReactNode }) => {
+  // Place each tab group in a new panel group, place a handle resizer at top
+
+  // Stores tabs info here
+
+  // const tabs = []
+  // const tabsCount = tabs.length;
+
+
   return (
     <div className="w-full h-full flex items-end">
       <div className="w-full flex gap-1 pl-4">
@@ -21,6 +29,7 @@ const TabsContainer = ({ children }: { children: React.ReactNode }) => {
             <IconButton variation="small" label="New tab">
               <Plus />
             </IconButton>
+            {/* Dropdown menu for tabs control */}
           </div>
         </div>
       </div>
@@ -28,4 +37,4 @@ const TabsContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default TabsContainer;
+export default TabGroup;

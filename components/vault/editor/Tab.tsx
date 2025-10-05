@@ -24,7 +24,7 @@ const Tab = ({ label = "New Tab", isActive }: TabProps) => {
   return (
     <div
       className={cn(
-        "group flex items-center justify-between rounded-t-md h-8 max-w-[200px] min-w-[40px] w-full pl-2 pr-1.5 text-xs relative overflow-ellipsis",
+        "group flex items-center justify-between rounded-t-md h-8 max-w-[200px] min-w-[40px] w-full pl-2 pr-1.5 text-xs relative overflow-ellipsis cursor-default select-none",
         {
           "bg-primary-gray-4 text-primary-text rounded-out-b-sm": isActive,
           // "bg-primary-gray-2 text-primary-text-inactive hover:bg-primary-gray-button-hover-bg":
