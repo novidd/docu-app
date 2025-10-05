@@ -3,12 +3,12 @@ import { ChevronDown, PanelRight } from "lucide-react";
 
 const EditorTopToolbar = () => {
   return (
-    <div className="h-10 flex gap-0.5 items-center justify-end pr-1.5 bg-primary-gray-2">
+    <div className="h-full flex gap-1 items-center justify-end bg-primary-gray-2 pb-1">
       <IconButton>
-        <ChevronDown />
+        <ChevronDown className="h-5 w-5" />
       </IconButton>
       <IconButton>
-        <PanelRight />
+        <PanelRight className="h-5 w-5" />
       </IconButton>
     </div>
   );

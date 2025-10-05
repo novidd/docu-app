@@ -1,19 +1,19 @@
-import { FileSearch, GitFork, PanelLeft } from "lucide-react";
+import { FileSearch, GitFork, PanelLeft, PanelRight } from "lucide-react";
 import IconButton from "./IconButton";
 
-const SideToolbar = () => {
+const SideToolbarLeft = () => {
   return (
-    <nav className="max-w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
+    <nav className="w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
-        <IconButton className="w-[30px]">
+        <IconButton variation="small">
           <PanelLeft />
         </IconButton>
       </section>
       <section className="flex flex-col gap-2 px-2">
-        <IconButton className="w-[30px]">
+        <IconButton variation="small">
           <FileSearch />
         </IconButton>
-        <IconButton className="w-[30px]">
+        <IconButton variation="small">
           <GitFork />
         </IconButton>
       </section>
@@ -21,4 +21,17 @@ const SideToolbar = () => {
   );
 };
 
-export default SideToolbar;
+const SideToolbarRight = () => {
+  return (
+    <nav className="w-11 flex flex-col gap-2 justify-start items-center border-l-1 border-primary-gray-2 z-[999]">
+      <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
+        <IconButton variation="small">
+          <PanelRight />
+        </IconButton>
+      </section>
+      <section className="flex flex-col gap-2 px-2"></section>
+    </nav>
+  );
+};
+
+export { SideToolbarRight, SideToolbarLeft };
