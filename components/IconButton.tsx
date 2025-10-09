@@ -103,7 +103,6 @@ const IconButton = ({
   );
 };
 
-// Memoize the Button component to prevent unnecessary re-renders
 const Button = React.memo(
   ({
     variation = "default",

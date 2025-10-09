@@ -1,1 +1,2 @@
 export const TOOLTIP_GLOBAL_DELAY = 100;
+export const TOOLTIP_GLOBAL_SLOW_DELAY = 700;
