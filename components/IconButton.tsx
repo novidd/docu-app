@@ -1,14 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+
 import { Icon } from "lucide-react";
 import React from "react";
 
 type ButtonVariant = "default" | "small" | "smaller";
 
-interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   variation?: ButtonVariant;
-  label?: string;
   disabled?: boolean;
   active?: boolean;
   activeIcon?: typeof Icon;
@@ -17,7 +17,6 @@ interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 const IconButton = ({
   variation = "default",
-  label,
   disabled,
   active,
   activeIcon,

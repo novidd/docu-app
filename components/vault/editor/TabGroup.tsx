@@ -2,7 +2,7 @@ import React from "react";
 
 import { Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import IconButton from "../IconButton";
+import TooltipIconButton from "@/components/TooltipIconButton";
 
 const TabGroup = ({ children }: { children: React.ReactNode }) => {
   // Place each tab group in a new panel group, place a handle resizer at top
@@ -11,7 +11,6 @@ const TabGroup = ({ children }: { children: React.ReactNode }) => {
 
   // const tabs = []
   // const tabsCount = tabs.length;
-
 
   return (
     <div className="w-full h-full flex items-end">
@@ -26,9 +25,9 @@ const TabGroup = ({ children }: { children: React.ReactNode }) => {
                 height: "20px",
               }}
             />
-            <IconButton variation="small" label="New tab">
+            <TooltipIconButton variation="small" label="New tab" side="bottom" delay={700}>
               <Plus />
-            </IconButton>
+            </TooltipIconButton>
             {/* Dropdown menu for tabs control */}
           </div>
         </div>

@@ -6,7 +6,8 @@ const Editor = () => {
     <div className="h-10 w-full bg-primary-gray-2 pr-2">
       <TabGroup>
         {/* If there is no note or anything else open, show a "New tab" */}
-        <Tab isActive={true} label="Chapter 1 - With the Tilt of a Blade" />
+        <Tab isActive={true} title="Chapter 1 - With the Tilt of a Blade" />
+        <Tab isActive={true} title="Chapter 1 - With the Tilt of a Blade" />
         <Tab isActive={false} />
         <Tab isActive={false} />
       </TabGroup>

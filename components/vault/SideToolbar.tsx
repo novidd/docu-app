@@ -8,8 +8,9 @@ import {
   PanelRightClose,
   PanelRightOpen,
 } from "lucide-react";
-import IconButton from "./IconButton";
+import IconButton from "../IconButton";
 import { useVaultContext } from "@/context/VaultContext";
+import TooltipIconButton from "../TooltipIconButton";
 
 const SideToolbarLeft = () => {
   const {
@@ -19,21 +20,41 @@ const SideToolbarLeft = () => {
   return (
     <nav className="w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
-        <IconButton
+        {/* <IconButton
           variation="small"
           onClick={() => setPanelCollapsed(!isCollapsed)}
           active={isCollapsed}
           activeIcon={PanelLeftOpen}
           inactiveIcon={PanelLeftClose}
+        /> */}
+        <TooltipIconButton
+          label="Expand/Collapse Explorer"
+          activeLabel="Expand"
+          inactiveLabel="Collapse"
+          active={isCollapsed}
+          onClick={() => setPanelCollapsed(!isCollapsed)}
+          activeIcon={PanelLeftOpen}
+          inactiveIcon={PanelLeftClose}
+          side="right"
+          variation="small"
+          delay={300}
         />
       </section>
       <section className="flex flex-col gap-2 px-2">
-        <IconButton variation="small">
+        <TooltipIconButton
+          label="Open quick switcher"
+          side="right"
+          variation="small"
+        >
           <FileSearch />
-        </IconButton>
-        <IconButton variation="small">
+        </TooltipIconButton>
+        <TooltipIconButton
+          label="Open graph view"
+          side="right"
+          variation="small"
+        >
           <GitFork />
-        </IconButton>
+        </TooltipIconButton>
       </section>
     </nav>
   );
