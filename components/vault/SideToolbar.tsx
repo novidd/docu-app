@@ -1,13 +1,31 @@
-import { FileSearch, GitFork, PanelLeft, PanelRight } from "lucide-react";
+"use client";
+
+import {
+  FileSearch,
+  GitFork,
+  PanelLeftClose,
+  PanelLeftOpen,
+  PanelRightClose,
+  PanelRightOpen,
+} from "lucide-react";
 import IconButton from "./IconButton";
+import { useVaultContext } from "@/context/VaultContext";
 
 const SideToolbarLeft = () => {
+  const {
+    leftPanel: { isCollapsed, setPanelCollapsed },
+  } = useVaultContext();
+
   return (
     <nav className="w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
-        <IconButton variation="small">
-          <PanelLeft />
-        </IconButton>
+        <IconButton
+          variation="small"
+          onClick={() => setPanelCollapsed(!isCollapsed)}
+          active={isCollapsed}
+          activeIcon={PanelLeftOpen}
+          inactiveIcon={PanelLeftClose}
+        />
       </section>
       <section className="flex flex-col gap-2 px-2">
         <IconButton variation="small">
@@ -22,12 +40,23 @@ const SideToolbarLeft = () => {
 };
 
 const SideToolbarRight = () => {
+  const {
+    rightPanel: { isCollapsed, setPanelCollapsed },
+  } = useVaultContext();
+
   return (
     <nav className="w-11 flex flex-col gap-2 justify-start items-center border-l-1 border-primary-gray-2 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
-        <IconButton variation="small">
+        {/* <IconButton variation="small">
           <PanelRight />
-        </IconButton>
+        </IconButton> */}
+        <IconButton
+          variation="small"
+          onClick={() => setPanelCollapsed(!isCollapsed)}
+          active={isCollapsed}
+          activeIcon={PanelRightOpen}
+          inactiveIcon={PanelRightClose}
+        />
       </section>
       <section className="flex flex-col gap-2 px-2"></section>
     </nav>

@@ -1,6 +1,8 @@
 "use client";
 
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
+import { Icon } from "lucide-react";
+import React from "react";
 
 type ButtonVariant = "default" | "small" | "smaller";
 
@@ -8,12 +10,18 @@ interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   variation?: ButtonVariant;
   label?: string;
   disabled?: boolean;
+  active?: boolean;
+  activeIcon?: typeof Icon;
+  inactiveIcon?: typeof Icon;
 }
 
 const IconButton = ({
   variation = "default",
   label,
   disabled,
+  active,
+  activeIcon,
+  inactiveIcon,
   className,
   children,
   ...props
@@ -34,7 +42,13 @@ const IconButton = ({
       disabled={disabled}
       {...props}
     >
-      {children}
+      {active === undefined && children}
+      {active !== undefined &&
+        activeIcon &&
+        inactiveIcon &&
+        (active
+          ? React.createElement(activeIcon)
+          : React.createElement(inactiveIcon))}
     </button>
   );
 };

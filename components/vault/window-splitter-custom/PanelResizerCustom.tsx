@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import { PanelResizer } from "@window-splitter/react";
 import { useState } from "react";
 
