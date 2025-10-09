@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 
 import { X } from "lucide-react";
 
-import IconButton from "../../IconButton";
 import { useState } from "react";
 import {
   Tooltip,
@@ -13,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { TOOLTIP_GLOBAL_DELAY } from "@/constants/tooltip";
-import TooltipIconButton from "@/components/TooltipIconButton";
+import IconButton from "@/components/IconButton";
 
 interface TabProps {
   title?: string;
@@ -63,16 +62,17 @@ const Tab = ({ title = "New Tab", isActive }: TabProps) => {
                 >
                   <X className="h-4 w-4" />
                 </IconButton> */}
-                <TooltipIconButton
+                <IconButton
+                  useTooltip
                   variation="smaller"
                   onClick={handleOnClick}
                   className="z-[15]"
-                  label="Close"
+                  tooltip="Close"
                   side="bottom"
                   delay={700}
                 >
                   <X className="h-4 w-4" />
-                </TooltipIconButton>
+                </IconButton>
               </div>
             )}
 
@@ -81,16 +81,17 @@ const Tab = ({ title = "New Tab", isActive }: TabProps) => {
                 <p className="overflow-hidden text-ellipsis whitespace-nowrap z-[10]">
                   {title}
                 </p>
-                <TooltipIconButton
+                <IconButton
+                  useTooltip
                   variation="smaller"
                   onClick={handleOnClick}
                   className="z-[15]"
-                  label="Close"
+                  tooltip="Close"
                   side="bottom"
                   delay={700}
                 >
                   <X className="h-4 w-4" />
-                </TooltipIconButton>
+                </IconButton>
               </div>
             )}
 

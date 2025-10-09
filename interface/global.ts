@@ -1,7 +1,8 @@
-import { Side } from "@/types/types";
+import { Side } from "@/types/button";
 
-export interface TooltipProps {
-  side: Side;
+export interface TooltipPropsCustom {
+  useTooltip: boolean;
   tooltip: string;
+  side: Side;
   delay?: number;
 }

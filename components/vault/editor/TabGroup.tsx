@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import TooltipIconButton from "@/components/TooltipIconButton";
+import IconButton from "@/components/IconButton";
 
 const TabGroup = ({ children }: { children: React.ReactNode }) => {
   // Place each tab group in a new panel group, place a handle resizer at top
@@ -14,22 +14,32 @@ const TabGroup = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="w-full h-full flex items-end">
-      <div className="w-full flex gap-1 pl-4">
-        <div className="w-full flex gap-1 items-center relative">
-          {children}
-          <div className="h-full flex gap-1 justify-center items-center rounded-l-sm sticky right-0 mb-1 bg-primary-gray-2 z-[999]">
-            <Separator
-              orientation="vertical"
-              className="bg-[#3F3F3F]"
-              style={{
-                height: "20px",
-              }}
-            />
-            <TooltipIconButton variation="small" label="New tab" side="bottom" delay={700}>
-              <Plus />
-            </TooltipIconButton>
-            {/* Dropdown menu for tabs control */}
-          </div>
+      <div className="w-full flex gap-1 relative items-center pl-4">
+        {children}
+        <div className="h-full flex items-center">
+          <Separator
+            orientation="vertical"
+            className="bg-[#3F3F3F] mb-1"
+            style={{
+              height: "20px",
+            }}
+          />
+        </div>
+        <div className="h-full flex gap-1 justify-between w-full items-center sticky right-0 mb-1 bg-primary-gray-2 z-[999] pr-2">
+          <IconButton
+            useTooltip
+            variation="small"
+            tooltip="New tab"
+            side="bottom"
+            delay={700}
+          >
+            <Plus />
+          </IconButton>
+
+          {/* Dropdown menu for tabs control */}
+          <IconButton variation="small">
+            <ChevronDown />
+          </IconButton>
         </div>
       </div>
     </div>

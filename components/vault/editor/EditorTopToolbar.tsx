@@ -7,9 +7,6 @@ const EditorTopToolbar = () => {
       <IconButton>
         <ChevronDown className="h-5 w-5" />
       </IconButton>
-      <IconButton>
-        <PanelRight className="h-5 w-5" />
-      </IconButton>
     </div>
   );
 };

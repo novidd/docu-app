@@ -11,7 +11,7 @@ const PanelResizerCustom = () => {
   return (
     <PanelResizer
       size="1px"
-      className="panel group relative"
+      className="panel group relative z-[999]"
       onDrag={() => setIsDragging(true)}
       onDragEnd={() => setIsDragging(false)}
       onMouseEnter={() => setIsHovering(true)}

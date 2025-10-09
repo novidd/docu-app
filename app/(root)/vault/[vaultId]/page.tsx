@@ -38,6 +38,10 @@ const VaultPage = () => {
       <Panel min={`${PANEL_MIN_EDITOR_SIZE}px`}>
         <Editor />
       </Panel>
+      <PanelResizerCustom />
+      <Panel min={`${PANEL_MIN_EDITOR_SIZE}px`}>
+        <Editor />
+      </Panel>
     </PanelGroup>
   );
 };

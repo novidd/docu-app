@@ -1,18 +1,18 @@
-import TooltipIconButton from "@/components/TooltipIconButton";
+import IconButton from "@/components/IconButton";
 import { Bookmark, FolderClosed, Search } from "lucide-react";
 
 const ExplorerTopToolbar = () => {
   return (
     <div className="h-10 flex gap-1 items-center justify-start pl-1.5 bg-primary-gray-2">
-      <TooltipIconButton label="Files" side="bottom">
+      <IconButton tooltip="Files" side="bottom" useTooltip>
         <FolderClosed />
-      </TooltipIconButton>
-      <TooltipIconButton label="Search" side="bottom">
+      </IconButton>
+      <IconButton tooltip="Search" side="bottom" useTooltip>
         <Search />
-      </TooltipIconButton>
-      <TooltipIconButton label="Bookmark" side="bottom">
+      </IconButton>
+      <IconButton tooltip="Bookmark" side="bottom" useTooltip>
         <Bookmark />
-      </TooltipIconButton>
+      </IconButton>
     </div>
   );
 };

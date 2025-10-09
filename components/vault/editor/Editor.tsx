@@ -3,14 +3,14 @@ import TabGroup from "./TabGroup";
 
 const Editor = () => {
   return (
-    <div className="h-10 w-full bg-primary-gray-2 pr-2">
+    <div className="h-10 w-full bg-primary-gray-2">
       <TabGroup>
         {/* If there is no note or anything else open, show a "New tab" */}
-        <Tab isActive={true} title="Chapter 1 - With the Tilt of a Blade" />
         <Tab isActive={true} title="Chapter 1 - With the Tilt of a Blade" />
         <Tab isActive={false} />
         <Tab isActive={false} />
       </TabGroup>
+      
       {/* THIS BELOW IS THE ACTUAL TEXT EDITOR */}
       <div className="text-primary-text p-8 mt-2 w-full flex justify-center">
         <div className="flex flex-col max-w-[600px] w-full">
