@@ -1,14 +1,14 @@
 "use client";
 
-import React, { createContext, ReactNode, useContext } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface VaultProviderProps {
   children: ReactNode;
 }
 
 export const VaultProvider = ({ children }: VaultProviderProps) => {
-  const [isLeftPanelCollapsed, setLeftPanelCollapsed] = React.useState(false);
-  const [isRightPanelCollapsed, setRightPanelCollapsed] = React.useState(true);
+  const [isLeftPanelCollapsed, setLeftPanelCollapsed] = useState(false);
+  const [isRightPanelCollapsed, setRightPanelCollapsed] = useState(true);
 
   const toggleLeftPanelOpen = (isCollapsed: boolean) => {
     // console.log("leftpanel", isLeftPanelOpen)
@@ -21,7 +21,7 @@ export const VaultProvider = ({ children }: VaultProviderProps) => {
   };
 
   const toggleRightPanelOpen = (isCollapsed: boolean) => {
-        const shouldSetValue = true;
+    const shouldSetValue = true;
 
     if (shouldSetValue) {
       setRightPanelCollapsed(isCollapsed);

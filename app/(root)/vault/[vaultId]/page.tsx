@@ -17,6 +17,8 @@ const VaultPage = () => {
     leftPanel: { isCollapsed, setPanelCollapsed },
   } = useVaultContext();
 
+  // Split the explorer and editor into two panel groups
+
   return (
     <PanelGroup
       orientation="horizontal"
