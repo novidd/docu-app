@@ -1,3 +1,4 @@
+import EditorBottomToolbar from "./EditorBottomToolbar";
 import Tab from "./Tab";
 import TabGroup from "./TabGroup";
 
@@ -10,8 +11,9 @@ const Editor = () => {
         <Tab isActive={false} />
         <Tab isActive={false} />
       </TabGroup>
-      
+
       {/* THIS BELOW IS THE ACTUAL TEXT EDITOR */}
+      <EditorBottomToolbar />
       <div className="text-primary-text p-8 mt-2 w-full flex justify-center">
         <div className="flex flex-col max-w-[600px] w-full">
           <h1 className="text-3xl font-bold mb-4">

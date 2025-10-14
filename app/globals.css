@@ -13,12 +13,14 @@
   --color-primary-gray-2: #363636; /* Top bar */
   --color-primary-gray-3: #262626; /* Side bars (toolbar and explorer) */
   --color-primary-gray-4: #1e1e1e; /* Editor background */
+  --color-primary-gray-explorer-item: #343434;
 
   --color-primary-gray-active-icon: #dadada; /* Active icon */
   --color-primary-gray-button-hover-bg: #434343; /* Button hover bg */
 
   --color-primary-text: #eee;
   --color-primary-text-inactive: #a0a0a0;
+  --color-primary-icon-dark: #5D5D5D;
 }
 
 @theme inline {
@@ -62,15 +64,35 @@
 }
 
 /* CUSTOM CSS */
-/* ICON BUTTON */
-.icon-button {
-  svg {
+.icon, .icon-button {
+    svg {
     color: var(--color-primary-gray-1);
   }
+}
 
+.icon-dark {
+  svg {
+    color: var(--color-primary-icon-dark)
+  }
+}
+
+/* ICON BUTTON */
+.icon-button {
   &:hover svg {
     color: var(--color-primary-gray-active-icon);
     transition-duration: 100ms;
+  }
+
+  &:hover:disabled {
+    background: none;
+  }
+
+  &:disabled {
+    cursor:not-allowed;
+
+    svg {
+      color: var(--color-primary-icon-dark);
+    }
   }
 }
 
@@ -81,8 +103,12 @@
   }
 }
 
-/* .icon-button-small {
-} */
+.icon-button-small-icon {
+    svg {
+    width: 16px;
+    height: 16px;
+  }
+}
 
 .icon-button-smaller {
   svg {

@@ -1,5 +1,5 @@
 import IconButton from "../../IconButton";
-import { ChevronDown, PanelRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const EditorTopToolbar = () => {
   return (

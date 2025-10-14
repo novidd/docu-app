@@ -1,3 +1,3 @@
 export type Side = "top" | "right" | "bottom" | "left";
 
-export type ButtonVariant = "default" | "small" | "smaller";
+export type ButtonVariant = "default" | "small" | "smaller" | "smaller-wide";

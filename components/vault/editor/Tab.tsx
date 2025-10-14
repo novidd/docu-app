@@ -40,7 +40,7 @@ const Tab = ({ title = "New Tab", isActive }: TabProps) => {
         <TooltipTrigger asChild>
           <div
             className={cn(
-              "group flex items-center justify-between rounded-t-md h-8 max-w-[200px] min-w-[40px] w-full pl-2 pr-1.5 text-xs relative overflow-ellipsis cursor-default select-none",
+              "group flex items-center justify-between rounded-t-md h-8 max-w-[200px] min-w-[40px] w-full pl-2 pr-1.5 text-sm relative overflow-ellipsis cursor-default select-none",
               {
                 "bg-primary-gray-4 text-primary-text rounded-out-b-sm":
                   isActive,
@@ -55,13 +55,6 @@ const Tab = ({ title = "New Tab", isActive }: TabProps) => {
                 <p className="overflow-hidden text-ellipsis whitespace-nowrap z-[10]">
                   {title}
                 </p>
-                {/* <IconButton
-                  variation="smaller"
-                  onClick={handleOnClick}
-                  className="z-[15]"
-                >
-                  <X className="h-4 w-4" />
-                </IconButton> */}
                 <IconButton
                   useTooltip
                   variation="smaller"

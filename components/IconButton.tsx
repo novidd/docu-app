@@ -6,11 +6,13 @@ import React, { useMemo } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { ButtonVariant, Side } from "@/types/button";
 import { TOOLTIP_GLOBAL_DELAY } from "@/constants/tooltip";
+import parse from 'html-react-parser';
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
-  default: "h-7 w-8 icon-button-default",
-  small: "h-7 w-7 icon-button-small",
-  smaller: "h-5 w-5 rounded-xs icon-button-smaller",
+  "default": "h-7 w-8 icon-button-default",
+  "small": "h-7 w-7 icon-button-small",
+  "smaller": "h-6 w-6 rounded-xs icon-button-smaller",
+  "smaller-wide": "h-6 w-7 rounded-[4px] icon-button-smaller"
 };
 
 interface TooltipProps {
@@ -92,10 +94,10 @@ const IconButton = ({
       <TooltipTrigger asChild>{button}</TooltipTrigger>
       <TooltipContent
         side={side}
-        className="z-[1000] font-bold"
+        className="z-[1000] font-bold text-center"
         sideOffset={-3}
       >
-        {tooltipContent}
+        {parse(tooltipContent)}
       </TooltipContent>
     </Tooltip>
   ) : (
@@ -114,6 +116,7 @@ const Button = React.memo(
     children,
     ...props
   }: IconButtonProps) => {
+
     return (
       <button
         className={cn(

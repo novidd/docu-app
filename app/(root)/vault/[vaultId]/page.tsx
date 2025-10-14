@@ -10,14 +10,12 @@ import {
   PANEL_MIN_EXPLORER_SIZE,
 } from "@/constants/panel";
 import { useVaultContext } from "@/context/VaultContext";
+import { vault } from "@/data/database";
 
 const VaultPage = () => {
-  // Get the vault data here
   const {
     leftPanel: { isCollapsed, setPanelCollapsed },
   } = useVaultContext();
-
-  // Split the explorer and editor into two panel groups
 
   return (
     <PanelGroup
@@ -33,7 +31,7 @@ const VaultPage = () => {
         collapsed={isCollapsed}
         onCollapseChange={(isCollapsed) => setPanelCollapsed(isCollapsed)}
       >
-        <Explorer />
+        <Explorer vault={vault}/>
       </Panel>
       <PanelResizerCustom />
 
