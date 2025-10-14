@@ -21,6 +21,7 @@ interface TabProps {
 
 const Tab = ({ title = "New Tab", isActive }: TabProps) => {
   const [isHovering, setIsHovering] = useState(false);
+  // Tab history (the recent notes you've had open)
 
   const handleOnClick = () => {
     console.log("Close tab");

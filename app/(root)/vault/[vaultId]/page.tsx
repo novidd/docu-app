@@ -23,6 +23,7 @@ const VaultPage = () => {
       className="min-h-screen w-full bg-primary-gray-4"
     >
       <Panel
+        id="panel-explorer"
         min={`${PANEL_MIN_EXPLORER_SIZE}px`}
         default="300px"
         collapsible
@@ -31,15 +32,15 @@ const VaultPage = () => {
         collapsed={isCollapsed}
         onCollapseChange={(isCollapsed) => setPanelCollapsed(isCollapsed)}
       >
-        <Explorer vault={vault}/>
+        <Explorer vault={vault} />
       </Panel>
       <PanelResizerCustom />
 
-      <Panel min={`${PANEL_MIN_EDITOR_SIZE}px`}>
+      <Panel id="panel-editor-1" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
         <Editor />
       </Panel>
       <PanelResizerCustom />
-      <Panel min={`${PANEL_MIN_EDITOR_SIZE}px`}>
+      <Panel id="panel-editor-2" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
         <Editor />
       </Panel>
     </PanelGroup>

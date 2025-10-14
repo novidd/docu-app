@@ -44,7 +44,7 @@ const ExplorerList = ({ items, className }: ExplorerProps) => {
   return (
     <div
       className={cn(
-        "w-full flex flex-col gap-0.5 mt-0.5 select-none",
+        "w-full flex flex-col gap-0.5 mt-0.5 select-none ",
         className
       )}
     >
@@ -81,7 +81,7 @@ const ExplorerItem = ({
           disableHoverableContent={true}
         >
           <TooltipTrigger asChild>
-            <div className="w-full relative">
+            <div className="w-full relative text-primary-text-brighter hover:text-primary-text">
               <div
                 className={cn(
                   "flex items-center gap-1 w-full rounded-[4px] hover:bg-primary-gray-explorer-item h-[25px]",
@@ -97,7 +97,7 @@ const ExplorerItem = ({
                     className="pl-1 icon-dark"
                   />
                 )}
-                <span className="block w-full text-xs text-primary-text-inactive pb-0.5 text-ellipsis whitespace-nowrap overflow-hidden pr-2">
+                <span className="block w-full text-xs pb-0.5 text-ellipsis whitespace-nowrap overflow-hidden pr-2">
                   {item.name}
                 </span>
               </div>
