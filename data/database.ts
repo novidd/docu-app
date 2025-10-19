@@ -2,7 +2,7 @@ import { Folder, Note } from "@/types/explorer";
 
 export type VaultItem = Folder | Note;
 
-export const vault: VaultItem[] = [
+export const staticVault: VaultItem[] = [
   {
     id: "1",
     name: "Documents",

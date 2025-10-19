@@ -1,50 +1,33 @@
-"use client";
+import VaultClientWrapper from "./VaultClientWrapper";
+import { staticVault } from "@/data/database";
 
-import { PanelGroup, Panel } from "@window-splitter/react";
-import PanelResizerCustom from "@/components/vault/window-splitter-custom/PanelResizerCustom";
-
-import Explorer from "@/components/vault/explorer/Explorer";
-import EditorGroup from "@/components/vault/editor/EditorGroup";
 import {
-  PANEL_MIN_EDITOR_SIZE,
-  PANEL_MIN_EXPLORER_SIZE,
-} from "@/constants/panel";
-import { useVaultContext } from "@/context/VaultContext";
-import { vault } from "@/data/database";
+  getVaultById,
+  getVaultContentsHierarchical,
+} from "@/lib/supabase/vaults";
 
-const VaultPage = () => {
-  const {
-    leftPanel: { isCollapsed, setPanelCollapsed },
-  } = useVaultContext();
+interface VaultPageProps {
+  params: {
+    vaultId: string;
+  };
+}
 
-  return (
-    <PanelGroup
-      orientation="horizontal"
-      className="min-h-screen w-full bg-primary-gray-4"
-    >
-      <Panel
-        id="panel-explorer"
-        min={`${PANEL_MIN_EXPLORER_SIZE}px`}
-        default="300px"
-        collapsible
-        collapsedSize="0px"
-        defaultCollapsed={isCollapsed}
-        collapsed={isCollapsed}
-        onCollapseChange={(isCollapsed) => setPanelCollapsed(isCollapsed)}
-      >
-        <Explorer vault={vault} />
-      </Panel>
-      <PanelResizerCustom />
+const VaultPage = async ({ params }: VaultPageProps) => {
+  const { vaultId } = await params;
 
-      <Panel id="panel-editor-1" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
-        <EditorGroup />
-      </Panel>
-      <PanelResizerCustom />
-      <Panel id="panel-editor-2" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
-        <EditorGroup />
-      </Panel>
-    </PanelGroup>
-  );
+  const data = await getVaultById(vaultId);
+
+  // const vaultContent = await getVaultContents(vaultId);
+  // console.log(vaultContent);
+
+  const vaultContent = await getVaultContentsHierarchical(vaultId);
+  // console.log(vaultContent);
+
+  for (const item of vaultContent) {
+    console.log(item);
+  }
+
+  return <VaultClientWrapper vault={data} staticVault={staticVault} />;
 };
 
 export default VaultPage;

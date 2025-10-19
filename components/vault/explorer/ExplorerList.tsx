@@ -18,9 +18,11 @@ import { TOOLTIP_GLOBAL_SLOW_DELAY } from "@/constants/tooltip";
 
 import parse from "html-react-parser";
 import { countItemsInFolderToString } from "@/utils/vaultUtils";
+import { Vault } from "@/lib/supabase/types";
 
 interface ExplorerProps {
   items: VaultItem[];
+  vault: Vault;
   className?: string;
 }
 
@@ -40,7 +42,7 @@ interface ExplorerItemProps {
   className?: string;
 }
 
-const ExplorerList = ({ items, className }: ExplorerProps) => {
+const ExplorerList = ({ vault, items, className }: ExplorerProps) => {
   return (
     <div
       className={cn(
