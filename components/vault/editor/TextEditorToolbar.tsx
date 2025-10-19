@@ -7,7 +7,7 @@ import {
   EllipsisVertical,
 } from "lucide-react";
 
-const EditorBottomToolbar = () => {
+const TextEditorToolbar = () => {
   return (
     <div className="w-full flex justify-between items-center gap-2 text-primary-text-inactive text-xs mt-2 px-4">
       <div className="flex gap-0.5">
@@ -62,4 +62,4 @@ const EditorBottomToolbar = () => {
   );
 };
 
-export default EditorBottomToolbar;
+export default TextEditorToolbar;

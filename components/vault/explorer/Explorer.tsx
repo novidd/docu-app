@@ -13,11 +13,11 @@ interface ExplorerProps {
 
 const Explorer = ({ vault }: ExplorerProps) => {
   return (
-    <div className="h-full bg-primary-gray-3">
+    <aside className="h-full bg-primary-gray-3">
       <ExplorerTopToolbar />
       <ExplorerBottomToolbar />
       <ExplorerList items={vault} className="px-4 mt-2" />
-    </div>
+    </aside>
   );
 };
 

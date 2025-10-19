@@ -1,19 +1,9 @@
-import EditorBottomToolbar from "./EditorBottomToolbar";
-import Tab from "./Tab";
-import TabGroup from "./TabGroup";
+import TextEditorToolbar from "./TextEditorToolbar";
 
-const Editor = () => {
+const TextEditor = () => {
   return (
-    <div className="h-10 w-full bg-primary-gray-2">
-      <TabGroup>
-        {/* If there is no note or anything else open, show a "New tab" */}
-        <Tab isActive={true} title="Chapter 1 - With the Tilt of a Blade" />
-        <Tab isActive={false} />
-        <Tab isActive={false} />
-      </TabGroup>
-
-      {/* THIS BELOW IS THE ACTUAL TEXT EDITOR */}
-      <EditorBottomToolbar />
+    <div>
+      <TextEditorToolbar />
       <div className="text-primary-text p-8 mt-2 w-full flex justify-center">
         <div className="flex flex-col max-w-[600px] w-full">
           <h1 className="text-3xl font-bold mb-4">
@@ -72,4 +62,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default TextEditor;

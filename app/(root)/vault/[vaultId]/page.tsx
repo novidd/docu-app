@@ -4,7 +4,7 @@ import { PanelGroup, Panel } from "@window-splitter/react";
 import PanelResizerCustom from "@/components/vault/window-splitter-custom/PanelResizerCustom";
 
 import Explorer from "@/components/vault/explorer/Explorer";
-import Editor from "@/components/vault/editor/Editor";
+import EditorGroup from "@/components/vault/editor/EditorGroup";
 import {
   PANEL_MIN_EDITOR_SIZE,
   PANEL_MIN_EXPLORER_SIZE,
@@ -37,11 +37,11 @@ const VaultPage = () => {
       <PanelResizerCustom />
 
       <Panel id="panel-editor-1" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
-        <Editor />
+        <EditorGroup />
       </Panel>
       <PanelResizerCustom />
       <Panel id="panel-editor-2" min={`${PANEL_MIN_EDITOR_SIZE}px`}>
-        <Editor />
+        <EditorGroup />
       </Panel>
     </PanelGroup>
   );
