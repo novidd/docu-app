@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { format } from "date-fns";
 
-import { Folder, Note } from "@/types/explorer";
+// import { Folder, Note } from "@/types/explorer";
 import { VaultItem } from "@/data/database";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,12 +17,12 @@ import {
 import { TOOLTIP_GLOBAL_SLOW_DELAY } from "@/constants/tooltip";
 
 import parse from "html-react-parser";
-import { countItemsInFolderToString } from "@/utils/vaultUtils";
-import { Vault } from "@/lib/supabase/types";
+import { countItemsInFolderToString } from "@/lib/vault/vaultUtils";
+import { VaultContent, Folder, Note } from "@/lib/supabase/types";
 
-interface ExplorerProps {
-  items: VaultItem[];
-  vault: Vault;
+interface ExplorerListProps {
+  items?: VaultItem[];
+  vaultContent: VaultContent;
   className?: string;
 }
 
@@ -42,7 +42,11 @@ interface ExplorerItemProps {
   className?: string;
 }
 
-const ExplorerList = ({ vault, items, className }: ExplorerProps) => {
+const ExplorerList = ({
+  vaultContent,
+  items,
+  className,
+}: ExplorerListProps) => {
   return (
     <div
       className={cn(
@@ -50,7 +54,7 @@ const ExplorerList = ({ vault, items, className }: ExplorerProps) => {
         className
       )}
     >
-      {items.map((item) => (
+      {vaultContent.map((item) => (
         <div key={item.id}>
           {item.type === "folder" ? (
             <FolderItem folder={item as Folder} />
@@ -61,6 +65,24 @@ const ExplorerList = ({ vault, items, className }: ExplorerProps) => {
       ))}
     </div>
   );
+  // return (
+  //   <div
+  //     className={cn(
+  //       "w-full flex flex-col gap-0.5 mt-0.5 select-none ",
+  //       className
+  //     )}
+  //   >
+  //     {items.map((item) => (
+  //       <div key={item.id}>
+  //         {item.type === "folder" ? (
+  //           <FolderItem folder={item as Folder} />
+  //         ) : (
+  //           <NoteItem note={item as Note} />
+  //         )}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 };
 
 const ExplorerItem = ({
@@ -107,7 +129,7 @@ const ExplorerItem = ({
           </TooltipTrigger>
           {item.type === "folder" && isOpen && item.children.length > 0 && (
             <div className="pl-4">
-              <ExplorerList items={item.children} />
+              <ExplorerList vaultContent={item.children} />
             </div>
           )}
           <TooltipContent
@@ -128,24 +150,25 @@ const ExplorerItem = ({
 };
 
 const NoteItem = ({ note }: NoteProps) => {
-  const lastModified = format(note.updatedAt, "yyyy-MM-dd HH:mm");
-  const createdAt = format(note.createdAt, "yyyy-MM-dd HH:mm");
+  // const [storedNote, setStoredNote] = useState<Note>(note);
+
+  const lastModified = format(note.updated_at, "yyyy-MM-dd HH:mm");
+  const createdAt = format(note.created_at, "yyyy-MM-dd HH:mm");
   const tooltip = `Last modified ${lastModified} <br/> Created at ${createdAt}`;
 
   return <ExplorerItem item={note} tooltip={tooltip} className="pl-4" />;
 };
 
 const FolderItem = ({ folder }: FolderProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(folder.is_open);
   const tooltip = countItemsInFolderToString(folder);
 
   const handleOnClick = () => setIsOpen(!isOpen);
 
   // This is only for testing...
-  useEffect(() => {
-    setIsOpen(folder.isOpen);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   setIsOpen(folder.is_open);
+  // }, []);
 
   return (
     <ExplorerItem

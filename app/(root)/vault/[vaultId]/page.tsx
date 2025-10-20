@@ -15,19 +15,12 @@ interface VaultPageProps {
 const VaultPage = async ({ params }: VaultPageProps) => {
   const { vaultId } = await params;
 
-  const data = await getVaultById(vaultId);
+  const vault = await getVaultById(vaultId);
+  
+  const vaultContent = await getVaultContentsHierarchical(vaultId, true);
+  // console.log(vaultContent)
 
-  // const vaultContent = await getVaultContents(vaultId);
-  // console.log(vaultContent);
-
-  const vaultContent = await getVaultContentsHierarchical(vaultId);
-  // console.log(vaultContent);
-
-  for (const item of vaultContent) {
-    console.log(item);
-  }
-
-  return <VaultClientWrapper vault={data} staticVault={staticVault} />;
+  return <VaultClientWrapper vault={vault} vaultContent={vaultContent} staticVault={staticVault} />;
 };
 
 export default VaultPage;

@@ -8,6 +8,8 @@ export interface Vault {
   updated_at: string;
 }
 
+export type VaultContent = (Folder | Note)[];
+
 export interface Folder {
   id: string;
   vault_id: string;
@@ -16,9 +18,11 @@ export interface Folder {
   parent_id: string | null;
   created_at: string;
   updated_at: string;
+  type: "folder";
+  children: (Folder | Note)[];
+  is_open: boolean;
   metadata?: Record<string, any>;
   depth?: number;
-  children?: (Folder | Note)[];
 }
 
 export interface Note {
@@ -28,6 +32,7 @@ export interface Note {
   path: string;
   name: string;
   content: string;
+  type: "note";
   tags?: string[];
   metadata?: Record<string, any>;
   created_at: string;

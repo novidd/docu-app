@@ -11,14 +11,15 @@ import {
 } from "@/constants/panel";
 import { useVaultContext } from "@/context/VaultContext";
 import { VaultItem } from "@/data/database";
-import { Vault } from "@/lib/supabase/types";
+import { Vault, VaultContent } from "@/lib/supabase/types";
 
 interface VaultWrapperProps {
-  staticVault: VaultItem[];
   vault: Vault;
+  vaultContent: VaultContent;
+  staticVault: VaultItem[];
 }
 
-const VaultClientWrapper = ({ vault, staticVault }: VaultWrapperProps) => {
+const VaultClientWrapper = ({ vault, vaultContent, staticVault }: VaultWrapperProps) => {
   const {
     leftPanel: { isCollapsed, setPanelCollapsed },
   } = useVaultContext();
@@ -38,7 +39,7 @@ const VaultClientWrapper = ({ vault, staticVault }: VaultWrapperProps) => {
         collapsed={isCollapsed}
         onCollapseChange={(isCollapsed) => setPanelCollapsed(isCollapsed)}
       >
-        <Explorer vault={vault} staticVault={staticVault} />
+        <Explorer vault={vault} vaultContent={vaultContent} staticVault={staticVault} />
       </Panel>
       <PanelResizerCustom />
 

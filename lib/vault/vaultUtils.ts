@@ -1,4 +1,6 @@
-import { Folder } from "@/types/explorer";
+// import { Folder } from "@/types/explorer";
+
+import { Folder } from "../supabase/types";
 
 interface ItemCounts {
   folders: number;

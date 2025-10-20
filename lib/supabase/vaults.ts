@@ -1,5 +1,6 @@
 import supabaseServerClient from "@/lib/supabase/server";
 import { Folder, Note, Vault } from "./types";
+import { logVaultHierarchy } from "../utils";
 
 const isValidUUID = (id: string) =>
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
@@ -23,7 +24,8 @@ export async function getVaultById(vaultId: string): Promise<Vault> {
 // ALSO ADD A "type" FIELD EITHER "folder or "note" FOR SIMPLER HANDLING IN THE FRONTEND
 
 export async function getVaultContentsHierarchical(
-  vaultId: string
+  vaultId: string,
+  logHierarchy = false
 ): Promise<(Folder | Note)[]> {
   // Validate vaultId
   if (!vaultId || !isValidUUID(vaultId)) {
@@ -35,7 +37,7 @@ export async function getVaultContentsHierarchical(
   // Fetch folders using get_folder_tree RPC
   const { data: folders, error: folderError } = await res.rpc(
     "get_folder_tree",
-    { vault_id: vaultId }
+    { vault: vaultId }
   );
   if (folderError) throw new Error(folderError.message);
 
@@ -43,7 +45,7 @@ export async function getVaultContentsHierarchical(
   const { data: notes, error: noteError } = await res
     .from("notes")
     .select(
-      "id, vault_id, folder_id, path, name, content, tags, metadata, created_at, updated_at"
+      "id, vault_id, folder_id, path, name, content, type, tags, metadata, created_at, updated_at"
     )
     .eq("vault_id", vaultId)
     .order("updated_at", { ascending: false });
@@ -91,6 +93,13 @@ export async function getVaultContentsHierarchical(
   // Sort root items by name
   rootItems.sort((a, b) => a.name.localeCompare(b.name));
 
+  // Log the hierarchy?
+  if (rootItems && logHierarchy) {
+    console.log("\n=== VAULT HIERARCHY ===");
+    logVaultHierarchy(rootItems);
+    console.log("======================\n");
+  }
+
   return rootItems;
 }
 
@@ -115,7 +124,7 @@ export async function getVaultContents(
   const { data: notes, error: noteError } = await res
     .from("notes")
     .select(
-      "id, vault_id, folder_id, path, name, content, name, tags, metadata, created_at, updated_at"
+      "id, vault_id, folder_id, path, name, content, name, type, tags, metadata, created_at, updated_at"
     )
     .eq("vault_id", vaultId)
     .order("updated_at", { ascending: false });
