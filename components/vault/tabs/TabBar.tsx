@@ -2,7 +2,6 @@
 
 import { Plus } from 'lucide-react';
 import Tab from './Tab';
-import { uuid } from '@/utils/uuid';
 
 type TabType = {
   id: string;

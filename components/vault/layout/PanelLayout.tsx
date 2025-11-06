@@ -1,11 +1,11 @@
-// src/components/layout/PanelLayout.tsx
 'use client';
 
 import { PanelGroup } from 'react-resizable-panels';
 import PanelRenderer from './PanelRenderer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImperativePanelHandle } from 'react-resizable-panels';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { PANEL_MIN_SIZE } from '@/constants/panel';
 
 export type PanelConfig = {
   id: string;
@@ -26,11 +26,30 @@ type PanelLayoutProps = {
 
 export default function PanelLayout({ panels, onPanelsChange, onAddPanel }: PanelLayoutProps) {
   const refs = useRef<Record<string, ImperativePanelHandle>>({});
+  const [collapsedState, setCollapsedState] = useState<Record<string, boolean>>({});
 
   const toggle = (id: string) => {
-    const r = refs.current[id];
-    if (r) r.isCollapsed() ? r.expand() : r.collapse();
+    const panel = refs.current[id];
+    if (!panel) return;
+
+    const willCollapse = !panel.isCollapsed();
+    panel[willCollapse ? 'collapse' : 'expand']();
+    setCollapsedState(prev => ({ ...prev, [id]: willCollapse }));
   };
+
+  // Reset explorer to default size on mount
+  // useEffect(() => {
+  //   const explorer = panels.find(p => p.id === 'explorer');
+  //   if (explorer?.defaultSize !== undefined) {
+  //     const panelRef = refs.current['explorer'];
+  //     if (panelRef && !panelRef.isCollapsed()) {
+  //       // Use setTimeout to ensure layout is ready
+  //       setTimeout(() => {
+  //         panelRef.resize(explorer.defaultSize ?? PANEL_DEFAULT_SIZE);
+  //       }, 0);
+  //     }
+  //   }
+  // }, [panels]);
 
   return (
     <div className="h-screen flex flex-col bg-gray-900 text-gray-100">
@@ -43,12 +62,12 @@ export default function PanelLayout({ panels, onPanelsChange, onAddPanel }: Pane
               onClick={() => toggle(p.id)}
               className="px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm flex items-center gap-1"
             >
-              {refs.current[p.id]?.isCollapsed() ? (
+              {collapsedState[p.id] ? (
                 <ChevronRight className="w-4 h-4" />
               ) : (
                 <ChevronLeft className="w-4 h-4" />
               )}
-              {refs.current[p.id]?.isCollapsed() ? 'Show' : 'Hide'} {p.title}
+              {collapsedState[p.id] ? 'Show' : 'Hide'} {p.title}
             </button>
           ))}
 
@@ -57,6 +76,7 @@ export default function PanelLayout({ panels, onPanelsChange, onAddPanel }: Pane
             onAddPanel({
               title: 'New Panel',
               defaultSize: 30,
+              minSize: PANEL_MIN_SIZE,
               content: <div className="p-4 text-center text-gray-500">Empty panel</div>,
             })
           }
@@ -66,7 +86,7 @@ export default function PanelLayout({ panels, onPanelsChange, onAddPanel }: Pane
         </button>
       </div>
 
-      <PanelGroup direction="horizontal" className="flex-1" autoSaveId="obsidian-layout">
+      <PanelGroup direction="horizontal" className="flex-1">
         {panels.map((panel, i) => (
           <PanelRenderer
             key={panel.id}

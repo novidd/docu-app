@@ -1,4 +1,3 @@
-// src/components/tabs/NewTabPlaceholder.tsx
 'use client';
 
 export default function NewTabPlaceholder({ 
