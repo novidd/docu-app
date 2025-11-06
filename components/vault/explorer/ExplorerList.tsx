@@ -1,9 +1,8 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
 
-// import { Folder, Note } from "@/types/explorer";
 import { VaultItem } from "@/data/database";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -50,7 +49,7 @@ const ExplorerList = ({
   return (
     <div
       className={cn(
-        "w-full flex flex-col gap-0.5 mt-0.5 select-none ",
+        "w-full flex flex-col gap-0.5 mt-0.5 select-none",
         className
       )}
     >
@@ -91,11 +90,12 @@ const ExplorerItem = ({
   onClick,
   tooltip,
   className,
+  ...props
 }: ExplorerItemProps) => {
   const chevron = isOpen ? ChevronDown : ChevronRight;
 
   return (
-    <div className="relative">
+    <div className="relative" {...props}>
       <TooltipProvider
         delayDuration={TOOLTIP_GLOBAL_SLOW_DELAY}
         disableHoverableContent={true}
@@ -156,7 +156,11 @@ const NoteItem = ({ note }: NoteProps) => {
   const createdAt = format(note.created_at, "yyyy-MM-dd HH:mm");
   const tooltip = `Last modified ${lastModified} <br/> Created at ${createdAt}`;
 
-  return <ExplorerItem item={note} tooltip={tooltip} className="pl-4" />;
+  const onClickOpenNote = () => {
+    console.log("Open note:", note.content);  
+  }
+
+  return <ExplorerItem item={note} tooltip={tooltip} className="pl-4" onClick={onClickOpenNote}/>;
 };
 
 const FolderItem = ({ folder }: FolderProps) => {

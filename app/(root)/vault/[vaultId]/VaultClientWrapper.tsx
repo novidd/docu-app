@@ -12,6 +12,7 @@ import {
 import { useVaultContext } from "@/context/VaultContext";
 import { VaultItem } from "@/data/database";
 import { Vault, VaultContent } from "@/lib/supabase/types";
+import ResizablePanel from "@/components/vault/ResizablePanel";
 
 interface VaultWrapperProps {
   vault: Vault;

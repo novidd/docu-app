@@ -3,6 +3,12 @@ import Tab from "./Tab";
 import TabGroup from "./TabGroup";
 
 const EditorGroup = () => {
+
+  // Register this editor group to the context?
+
+  // Get the note(s) here
+  // Get the tabs associated with this editor group
+
   return (
     <div className="h-10 w-full bg-primary-gray-2">
       <TabGroup>

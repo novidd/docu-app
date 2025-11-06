@@ -1,39 +1,44 @@
-const items = [
-  { id: 1, text: "Item 1", height: "h-16" },
-  { id: 2, text: "Item 2", height: "h-24" },
-  { id: 3, text: "Item 3", height: "h-20" },
-];
+// app/obsidian/page.tsx
+'use client';
 
-const Home = () => {
-  return (
-    <div>
-      HOME
-      {/* CREATE NEW VAULT */}
-      {/* OPEN VAULT */}
-      {/* MANAGE VAULTS */}
-      {/* LIST OF ALL YOUR VAULTS 
-        - Vault name
-        - Last modified (Date + time)
-        - Include node count
-      */}
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="relative w-96 mx-auto bg-gray-200 p-4">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className={`relative ${item.height} flex items-center px-4 group cursor-pointer`}
-            >
-              <span className="z-10">{item.text}</span>
-              <div
-                className="absolute inset-x-0 bg-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-0"
-                style={{ height: "100%", top: 0 }}
-              ></div>
-            </div>
+import PanelLayout, { PanelConfig } from '@/components/vault/layout/PanelLayout';
+import { useState } from 'react';
+
+export default function ObsidianPage() {
+  const [panels, setPanels] = useState<PanelConfig[]>([
+    {
+      id: 'explorer',
+      title: 'Explorer',
+      defaultSize: 22,
+      minSize: 15,
+      collapsible: true,
+      content: (
+        <ul className="space-y-1 text-sm p-3">
+          {['Home.md', 'Notes.md', 'Tasks.md'].map(f => (
+            <li key={f} className="cursor-pointer hover:text-blue-600">{f}</li>
           ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+        </ul>
+      ),
+    },
+    {
+      id: 'editor',
+      title: 'Editor',
+      defaultSize: 78,
+      tabs: [{ id: 'note-1', title: 'Untitled.md', content: '# Hello' }],
+      activeTabId: 'note-1',
+    },
+  ]);
 
-export default Home;
+  const addPanel = (panel: Omit<PanelConfig, 'id'>) => {
+    const id = `panel-${Date.now()}`;
+    setPanels(p => [...p, { ...panel, id }]);
+  };
+
+  return (
+    <PanelLayout
+      panels={panels}
+      onPanelsChange={setPanels}
+      onAddPanel={addPanel}
+    />
+  );
+}

@@ -1,6 +1,11 @@
 import TextEditorToolbar from "./TextEditorToolbar";
+import { Note } from "@/lib/supabase/types";
 
-const TextEditor = () => {
+interface TextEditorProps {
+  note: Note;
+}
+
+const TextEditor = ({note} : TextEditorProps) => {
   return (
     <div>
       <TextEditorToolbar />

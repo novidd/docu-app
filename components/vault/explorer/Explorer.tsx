@@ -12,7 +12,7 @@ import { CloudCheck, Loader } from "lucide-react";
 
 interface ExplorerProps {
   staticVault: VaultItem[];
-  vault: Vault
+  vault: Vault;
   vaultContent: VaultContent;
 }
 
@@ -23,28 +23,40 @@ const Explorer = ({ vault, vaultContent, staticVault }: ExplorerProps) => {
     : "All changes saved";
 
   return (
-    <div className="h-full bg-primary-gray-3 flex flex-col">
-      <div className="h-full">
-        <ExplorerTopToolbar vaultName={vault.name} />
-        <ExplorerBottomToolbar />
-        <ExplorerList vaultContent={vaultContent} items={staticVault} className="px-4 mt-2" />
-      </div>
-      <div className="h-[48px] px-2.5 flex justify-between items-center border-t border-primary-gray-2">
-        <p className="text-sm font-bold text-ellipsis whitespace-nowrap overflow-hidden text-primary-text">
-          {vault.name}
-        </p>
-        <IconButton
-          variation="smaller"
-          useTooltip
-          tooltip={loadingTooltip}
-          side="right"
-        >
+    <div className="h-full">
+      <div className=" bg-primary-gray-3 w-full h-full flex flex-col justify-between">
+        <div className="flex flex-col h-full w-full">
+          <ExplorerTopToolbar />
+          <ExplorerBottomToolbar />
           {isLoading ? (
-            <Loader className="animate-spin h-4 w-4 text-primary-text" />
+            <div className="w-full h-1/2 rounded-md px-4 pb-4">
+              <div className="w-full h-full rounded-md bg-primary-gray-4 skeleton" />
+            </div>
           ) : (
-            <CloudCheck />
+            <ExplorerList
+              vaultContent={vaultContent}
+              items={staticVault}
+              className="px-4"
+            />
           )}
-        </IconButton>
+        </div>
+        <div className="h-[48px] px-2.5 flex justify-between items-center border-t border-primary-gray-2">
+          <p className="text-sm font-bold text-ellipsis whitespace-nowrap overflow-hidden text-primary-text">
+            {vault.name}
+          </p>
+          <IconButton
+            variation="smaller"
+            useTooltip
+            tooltip={loadingTooltip}
+            side="right"
+          >
+            {isLoading ? (
+              <Loader className="animate-spin h-4 w-4 text-primary-text" />
+            ) : (
+              <CloudCheck />
+            )}
+          </IconButton>
+        </div>
       </div>
     </div>
   );

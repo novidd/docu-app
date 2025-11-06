@@ -16,11 +16,17 @@ const VaultPage = async ({ params }: VaultPageProps) => {
   const { vaultId } = await params;
 
   const vault = await getVaultById(vaultId);
-  
+
   const vaultContent = await getVaultContentsHierarchical(vaultId, true);
   // console.log(vaultContent)
 
-  return <VaultClientWrapper vault={vault} vaultContent={vaultContent} staticVault={staticVault} />;
+  return (
+    <VaultClientWrapper
+      vault={vault}
+      vaultContent={vaultContent}
+      staticVault={staticVault}
+    />
+  );
 };
 
 export default VaultPage;

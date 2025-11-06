@@ -21,7 +21,7 @@
   --color-primary-text: #eee;
   --color-primary-text-brighter: #bbb;
   --color-primary-text-inactive: #a0a0a0;
-  --color-primary-icon-dark: #5D5D5D;
+  --color-primary-icon-dark: #5d5d5d;
 }
 
 @theme inline {
@@ -65,15 +65,53 @@
 }
 
 /* CUSTOM CSS */
-.icon, .icon-button {
-    svg {
+/* [data-panel-resize-handle] {
+  transition: opacity 0.2s ease;
+}
+[data-panel-resize-handle][data-collapsed] {
+  opacity: 0;
+  pointer-events: none;
+} */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-primary-gray-3),
+    transparent
+  );
+  animation: skeletonSweep 1.5s infinite;
+}
+
+@keyframes skeletonSweep {
+    100% {
+      transform: translateX(100%);
+    }
+}
+
+.icon,
+.icon-button {
+  svg {
     color: var(--color-primary-gray-1);
   }
 }
 
 .icon-dark {
   svg {
-    color: var(--color-primary-icon-dark)
+    color: var(--color-primary-icon-dark);
   }
 }
 
@@ -89,7 +127,7 @@
   }
 
   &:disabled {
-    cursor:not-allowed;
+    cursor: not-allowed;
 
     svg {
       color: var(--color-primary-icon-dark);
@@ -97,7 +135,8 @@
   }
 }
 
-.icon-button-default, .icon-button-small {
+.icon-button-default,
+.icon-button-small {
   svg {
     width: 18px;
     height: 18px;
@@ -105,7 +144,7 @@
 }
 
 .icon-button-small-icon {
-    svg {
+  svg {
     width: 16px;
     height: 16px;
   }

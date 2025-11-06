@@ -12,7 +12,7 @@ const ExplorerBottomToolbar = () => {
   // Create an arrow of Button objects and define their properties, methods etc
 
   return (
-    <div className="flex flex-row gap-0.5 w-full items-center justify-center mt-2">
+    <div className="h-10 flex flex-row gap-0.5 w-full items-center justify-center">
       <IconButton
         variation="small"
         useTooltip
