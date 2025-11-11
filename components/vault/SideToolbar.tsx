@@ -10,27 +10,37 @@ import {
 } from "lucide-react";
 import IconButton from "../IconButton";
 import { useVaultContext } from "@/context/VaultContext";
+import { PanelConfig } from "./layout/PanelLayout";
 
-const SideToolbarLeft = () => {
-  const {
-    leftPanel: { isCollapsed, setPanelCollapsed },
-  } = useVaultContext();
-
+const SideToolbarLeft = ({
+  panels,
+  toggle,
+  collapsedState,
+}: {
+  panels: PanelConfig[];
+  toggle: (id: string) => void;
+  collapsedState: Record<string, boolean>;
+}) => {
   return (
     <nav className="w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
-        <IconButton
-          variation="small"
-          useTooltip
-          side="right"
-          delay={300}
-          activeStateTooltip="Expand"
-          inactiveStateTooltip="Collapse"
-          activeState={isCollapsed}
-          onClick={() => setPanelCollapsed(!isCollapsed)}
-          activeStateIcon={PanelLeftOpen}
-          inactiveStateIcon={PanelLeftClose}
-        />
+        {panels
+          .filter((p) => p.id === "explorer")
+          .map((p) => (
+            <IconButton
+              key={p.id}
+              variation="small"
+              useTooltip
+              side="right"
+              delay={300}
+              activeStateTooltip="Expand"
+              inactiveStateTooltip="Collapse"
+              activeState={collapsedState[p.id]}
+              onClick={() => toggle(p.id)}
+              activeStateIcon={PanelLeftOpen}
+              inactiveStateIcon={PanelLeftClose}
+            />
+          ))}
       </section>
       <section className="w-full flex flex-col gap-2 px-2">
         <IconButton
