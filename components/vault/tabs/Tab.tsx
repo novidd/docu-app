@@ -1,9 +1,19 @@
-'use client';
+"use client";
 
-import { X } from 'lucide-react';
+import IconButton from "@/components/IconButton";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { TOOLTIP_GLOBAL_DELAY } from "@/constants/tooltip";
+import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 
 type TabProps = {
   title: string;
+  index: number;
   isActive: boolean;
   isUnsaved?: boolean;
   showClose?: boolean;
@@ -13,6 +23,7 @@ type TabProps = {
 
 export default function Tab({
   title,
+  index,
   isActive,
   isUnsaved = false,
   showClose = true,
@@ -20,28 +31,60 @@ export default function Tab({
   onClose,
 }: TabProps) {
   return (
-    <div
-      className={`flex items-center px-3 py-1.5 cursor-pointer border-r text-sm
-        ${isActive ? 'bg-white font-medium' : 'hover:bg-gray-200'}`}
-      onClick={onClick}
+    <TooltipProvider
+      delayDuration={TOOLTIP_GLOBAL_DELAY}
+      disableHoverableContent={true}
     >
-      <span className="select-none">
-        {title}
-        {isUnsaved && ' •'}
-      </span>
-
-      {showClose && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-          className="ml-2 text-gray-500 hover:text-red-600 transition-colors"
-          aria-label="Close tab"
+      <Tooltip
+        delayDuration={TOOLTIP_GLOBAL_DELAY}
+        disableHoverableContent={true}
+      >
+        <TooltipTrigger asChild>
+          <div
+            className={cn(
+              "group flex items-center justify-between h-full max-w-[200px] min-w-[40px] w-full pl-1 text-sm relative overflow-ellipsis cursor-default select-none",
+              {
+                "bg-primary-gray-4 text-primary-text rounded-out-b-sm z-[9999]":
+                  isActive,
+                "text-primary-text-inactive hover:bg-primary-gray-button-hover-bg": !isActive,
+                "rounded-tr-md": index === 0,
+                "rounded-t-md": index > 0,
+              }
+            )}
+            onClick={onClick}
+          >
+            <div className="overflow-hidden flex items-center justify-between pl-1 pr-1.5 h-[28px] w-full z-[0] rounded-sm">
+              <span className="flex items-center gap-1 select-none text-ellipsis overflow-hidden whitespace-nowrap z-[10]">
+                <span className="text-xl mb-1">{isUnsaved && "• "}</span>
+                {title}
+              </span>
+              {showClose && (
+                <IconButton
+                  useTooltip
+                  variation="smaller"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onClose();
+                  }}
+                  className="z-[15]"
+                  tooltip="Close"
+                  side="bottom"
+                  delay={700}
+                >
+                  <X className="h-4 w-4" />
+                </IconButton>
+              )}
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent
+          side="bottom"
+          className="z-[1000] font-bold"
+          sideOffset={-3}
         >
-          <X className="w-3.5 h-3.5" />
-        </button>
-      )}
-    </div>
+          {title}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

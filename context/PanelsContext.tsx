@@ -62,7 +62,7 @@ export function PanelsProvider({
       ...p,
       tabs: p.tabs?.map(t =>
         t.id === placeholderTabId
-          ? { id: newId, title: 'New Note.md', content: '# New note', isUnsaved: true }
+          ? { id: newId, title: 'Untitled', content: '# New note', isUnsaved: true }
           : t
       ) || [],
       activeTabId: newId,

@@ -45,7 +45,7 @@ const VaultClientWrapperNew = ({
       title: "Editor",
       defaultSize: 78,
       minSize: PANEL_MIN_SIZE,
-      tabs: [{ id: "note-1", title: "Untitled.md", content: "# Hello" }],
+      tabs: [{ id: "note-1", title: "Untitled", content: "# Hello" }],
       activeTabId: "note-1",
     },
   ]);

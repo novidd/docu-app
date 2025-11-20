@@ -22,7 +22,7 @@ export default function TabContent({ tab, onChange, onCreateNote }: TabContentPr
       value={tab.content}
       onChange={(e) => onChange(e.target.value)}
       placeholder="Write here..."
-      className="w-full h-full resize-none font-mono text-sm bg-transparent outline-none p-3"
+      className="w-full h-full resize-none font-mono text-sm outline-none p-3 bg-primary-gray-4"
     />
   );
 }

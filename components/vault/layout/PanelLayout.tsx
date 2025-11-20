@@ -72,8 +72,8 @@ export default function PanelLayout({
   }, [panels]);
 
   return (
-    <div className="flex flex-col bg-primary-gray-4">
-      <div className="flex min-h-screen min-w-screen ">
+    <div className="flex flex-col bg-primary-gray-4 p-2 h-screen">
+      <div className="flex gap-2 h-[100%]">
         <SideToolbarLeft
           panels={panels}
           toggle={toggle}
@@ -83,8 +83,8 @@ export default function PanelLayout({
           panels={panels}
           onPanelsChange={setPanels || onPanelsChange}
         >
-          <div className="h-screen flex flex-col bg-gray-900 text-gray-100 w-full">
-            <PanelGroup direction="horizontal" className="flex-1">
+          <div className="flex flex-col text-gray-100 w-full h-full">
+            <PanelGroup direction="horizontal" className="flex-1 gap-1">
               {panels.map((panel, i) => (
                 <PanelRenderer
                   key={panel.id}

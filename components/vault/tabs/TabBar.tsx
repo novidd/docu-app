@@ -1,7 +1,9 @@
-'use client';
+"use client";
 
-import { Plus } from 'lucide-react';
-import Tab from './Tab';
+import { ChevronDown, Plus } from "lucide-react";
+import Tab from "./Tab";
+import IconButton from "@/components/IconButton";
+import { Separator } from "@radix-ui/react-separator";
 
 type TabType = {
   id: string;
@@ -26,13 +28,14 @@ export default function TabBar({
   onNewTab,
 }: TabBarProps) {
   const isOnlyPlaceholder =
-    tabs.length === 1 && tabs[0].title === 'New Tab' && tabs[0].content === '';
+    tabs.length === 1 && tabs[0].title === "New Tab" && tabs[0].content === "";
 
   return (
-    <div className="flex items-center bg-gray-100 border-b text-sm">
-      {tabs.map((tab) => (
+    <div className="flex items-center bg-primary-gray-2 text-sm h-[40px] gap-0 flex-shrink-0">
+      {tabs.map((tab, i) => (
         <Tab
           key={tab.id}
+          index={i}
           title={tab.title}
           isActive={activeTabId === tab.id}
           isUnsaved={tab.isUnsaved}
@@ -42,13 +45,34 @@ export default function TabBar({
         />
       ))}
 
-      <button
-        onClick={onNewTab}
-        className="px-2 py-1.5 text-gray-600 hover:bg-gray-200 transition-colors"
-        aria-label="New tab"
-      >
-        <Plus className="w-4 h-4" />
-      </button>
+      <div>
+        <Separator
+          orientation="vertical"
+          className="bg-[#3F3F3F] mx-2"
+          style={{
+            width: "1px",
+            height: "24px",
+          }}
+        />
+      </div>
+
+      <div className="h-full flex gap-1 justify-between w-full items-center sticky right-0 bg-primary-gray-2 z-[999] pr-2">
+        <IconButton
+          onClick={onNewTab}
+          useTooltip
+          variation="small"
+          tooltip="New tab"
+          side="bottom"
+          delay={700}
+        >
+          <Plus />
+        </IconButton>
+
+        {/* Dropdown menu for tabs control */}
+        <IconButton variation="small">
+          <ChevronDown />
+        </IconButton>
+      </div>
     </div>
   );
 }

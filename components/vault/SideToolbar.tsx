@@ -22,7 +22,7 @@ const SideToolbarLeft = ({
   collapsedState: Record<string, boolean>;
 }) => {
   return (
-    <nav className="w-11 flex flex-col gap-2 justify-start items-center bg-primary-gray-3 border-r-1 border-primary-gray-2 z-[999]">
+    <nav className="w-11 h-sc flex flex-col gap-2 justify-start items-center bg-primary-gray-3 rounded-xs overflow-hidden border-1 border-primary-border-1 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
         {panels
           .filter((p) => p.id === "explorer")
@@ -42,7 +42,7 @@ const SideToolbarLeft = ({
             />
           ))}
       </section>
-      <section className="w-full flex flex-col gap-2 px-2">
+      <section className="w-full flex flex-col gap-2 items-center">
         <IconButton
           useTooltip
           tooltip="Open quick switcher"
@@ -70,7 +70,7 @@ const SideToolbarRight = () => {
   } = useVaultContext();
 
   return (
-    <nav className="w-11 flex flex-col gap-2 justify-start items-center border-l-1 border-primary-gray-2 z-[999]">
+    <nav className="w-11 flex flex-col gap-2 justify-start items-center rounded-xs overflow-hidden border-1 border-primary-border-1 z-[999]">
       <section className="h-10 w-full flex justify-center items-center bg-primary-gray-2">
         <IconButton
           variation="small"

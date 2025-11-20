@@ -7,27 +7,25 @@ export default function NewTabPlaceholder({
 }) {
   const actions = [
     {
-      label: 'Create new note',
+      label: 'Create new note (Ctrl + N)',
       fn: onCreateNote,
     },
-    { label: 'Go to file', fn: () => alert('Go to file…') },
-    { label: 'See recent files', fn: () => alert('Recent files…') },
-    { label: 'Close panel', fn: () => alert('Close panel…') },
+    { label: 'Go to file (Ctrl + O)', fn: () => alert('Go to file…') },
+    { label: 'See recent files (Ctrl + O)', fn: () => alert('Recent files…') },
+    { label: 'Close', fn: () => alert('Close panel…') },
   ];
 
   return (
-    <div className="p-8">
-      <div className="max-w-sm mx-auto">
+    <div className="flex flex-col items-center justify-center h-full">
         {actions.map(({ label, fn }) => (
           <button
             key={label}
             onClick={fn}
-            className="block w-full text-left px-4 py-3 mb-2 bg-white border rounded shadow hover:bg-gray-50 text-sm"
+            className="text-center py-2"
           >
             {label}
           </button>
         ))}
-      </div>
     </div>
   );
 }
